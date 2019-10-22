@@ -1,0 +1,316 @@
+{
+    "definitions": {},
+    "type": "object",
+    "title": "The Root Schema",
+    "required": [
+      "hosts",
+      "tasks"
+    ],
+    "properties": {
+      "hosts": {
+        "$id": "#/properties/hosts",
+        "type": "array",
+        "title": "The Hosts Schema",
+        "items": {
+          "$id": "#/properties/hosts/items",
+          "type": "string",
+          "title": "The Items Schema",
+          "default": "",
+          "examples": [
+            "172.16.118.128",
+            "172.16.118.133"
+          ],
+          "pattern": "^(.*)$"
+        }
+      },
+      "tasks": {
+        "$id": "#/properties/tasks",
+        "type": "array",
+        "title": "The Tasks Schema",
+        "items": {
+          "$id": "#/properties/tasks/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "required": [
+            "name",
+            "create_params"
+          ],
+          "properties": {
+            "name": {
+              "$id": "#/properties/tasks/items/properties/name",
+              "type": "string",
+              "title": "The Name Schema",
+              "default": "",
+              "examples": [
+                "taskname"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "create_params": {
+              "$id": "#/properties/tasks/items/properties/create_params",
+              "type": "object",
+              "title": "The Create_params Schema",
+              "required": [
+                "config",
+                "target",
+                "scanner",
+                "alerts"
+              ],
+              "properties": {
+                "config": {
+                  "$id": "#/properties/tasks/items/properties/create_params/properties/config",
+                  "type": "string",
+                  "title": "The Config Schema",
+                  "default": "",
+                  "examples": [
+                    "configname"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "target": {
+                  "$id": "#/properties/tasks/items/properties/create_params/properties/target",
+                  "type": "object",
+                  "title": "The Target Schema",
+                  "required": [
+                    "name",
+                    "hosts",
+                    "exclude_hosts",
+                    "credential",
+                    "port",
+                    "port_list"
+                  ],
+                  "properties": {
+                    "name": {
+                      "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/name",
+                      "type": "string",
+                      "title": "The Name Schema",
+                      "default": "",
+                      "examples": [
+                        "targetname"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "hosts": {
+                      "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/hosts",
+                      "type": "array",
+                      "title": "The Hosts Schema",
+                      "items": {
+                        "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/hosts/items",
+                        "type": "string",
+                        "title": "The Items Schema",
+                        "default": "",
+                        "examples": [
+                          "172.16.118.130",
+                          "172.16.118.135"
+                        ],
+                        "pattern": "^(.*)$"
+                      }
+                    },
+                    "exclude_hosts": {
+                      "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/exclude_hosts",
+                      "type": "array",
+                      "title": "The Exclude_hosts Schema",
+                      "items": {
+                        "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/exclude_hosts/items",
+                        "type": "string",
+                        "title": "The Items Schema",
+                        "default": "",
+                        "examples": [
+                          "172.16.118.130"
+                        ],
+                        "pattern": "^(.*)$"
+                      }
+                    },
+                    "credential": {
+                      "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/credential",
+                      "type": "object",
+                      "title": "The Credential Schema",
+                      "required": [
+                        "name",
+                        "login",
+                        "password"
+                      ],
+                      "properties": {
+                        "name": {
+                          "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/credential/properties/name",
+                          "type": "string",
+                          "title": "The Name Schema",
+                          "default": "",
+                          "examples": [
+                            "credential-name"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "login": {
+                          "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/credential/properties/login",
+                          "type": "string",
+                          "title": "The Login Schema",
+                          "default": "",
+                          "examples": [
+                            "username"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "password": {
+                          "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/credential/properties/password",
+                          "type": "string",
+                          "title": "The Password Schema",
+                          "default": "",
+                          "examples": [
+                            "password"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    },
+                    "port": {
+                      "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/port",
+                      "type": "string",
+                      "title": "The Port Schema",
+                      "default": "",
+                      "examples": [
+                        "22"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "port_list": {
+                      "$id": "#/properties/tasks/items/properties/create_params/properties/target/properties/port_list",
+                      "type": "string",
+                      "title": "The Port_list Schema",
+                      "default": "",
+                      "examples": [
+                        "portlist-name"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                },
+                "scanner": {
+                  "$id": "#/properties/tasks/items/properties/create_params/properties/scanner",
+                  "type": "string",
+                  "title": "The Scanner Schema",
+                  "default": "",
+                  "examples": [
+                    "scanner-name"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "alerts": {
+                  "$id": "#/properties/tasks/items/properties/create_params/properties/alerts",
+                  "type": "array",
+                  "title": "The Alerts Schema",
+                  "items": {
+                    "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items",
+                    "type": "object",
+                    "title": "The Items Schema",
+                    "required": [
+                      "name",
+                      "credential",
+                      "path",
+                      "host",
+                      "report_format",
+                      "status"
+                    ],
+                    "properties": {
+                      "name": {
+                        "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items/properties/name",
+                        "type": "string",
+                        "title": "The Name Schema",
+                        "default": "",
+                        "examples": [
+                          "alertname"
+                        ],
+                        "pattern": "^(.*)$"
+                      },
+                      "credential": {
+                        "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items/properties/credential",
+                        "type": "object",
+                        "title": "The Credential Schema",
+                        "required": [
+                          "name",
+                          "login",
+                          "password"
+                        ],
+                        "properties": {
+                          "name": {
+                            "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items/properties/credential/properties/name",
+                            "type": "string",
+                            "title": "The Name Schema",
+                            "default": "",
+                            "examples": [
+                              "credential-name"
+                            ],
+                            "pattern": "^(.*)$"
+                          },
+                          "login": {
+                            "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items/properties/credential/properties/login",
+                            "type": "string",
+                            "title": "The Login Schema",
+                            "default": "",
+                            "examples": [
+                              "username"
+                            ],
+                            "pattern": "^(.*)$"
+                          },
+                          "password": {
+                            "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items/properties/credential/properties/password",
+                            "type": "string",
+                            "title": "The Password Schema",
+                            "default": "",
+                            "examples": [
+                              "password"
+                            ],
+                            "pattern": "^(.*)$"
+                          }
+                        }
+                      },
+                      "path": {
+                        "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items/properties/path",
+                        "type": "string",
+                        "title": "The Path Schema",
+                        "default": "",
+                        "examples": [
+                          "/path/to/destination/file.csv"
+                        ],
+                        "pattern": "^(.*)$"
+                      },
+                      "host": {
+                        "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items/properties/host",
+                        "type": "string",
+                        "title": "The Host Schema",
+                        "default": "",
+                        "examples": [
+                          "0.0.0.0"
+                        ],
+                        "pattern": "^(.*)$"
+                      },
+                      "report_format": {
+                        "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items/properties/report_format",
+                        "type": "string",
+                        "title": "The Report_format Schema",
+                        "default": "",
+                        "examples": [
+                          "CSV Results"
+                        ],
+                        "pattern": "^(.*)$"
+                      },
+                      "status": {
+                        "$id": "#/properties/tasks/items/properties/create_params/properties/alerts/items/properties/status",
+                        "type": "string",
+                        "title": "The Status Schema",
+                        "default": "",
+                        "examples": [
+                          "Done"
+                        ],
+                        "pattern": "^(.*)$"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
