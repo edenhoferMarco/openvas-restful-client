@@ -1,21 +1,8 @@
 from application.configloader import ConfigLoaderBase
-
+from application.configloader.errors import ConfigValidationError
 from jsonschema import validate, ValidationError
 from json.decoder import JSONDecodeError
 import json
-
-
-class ConfigValidationError(Exception):
-    """
-        Raised if an error during json validation occured.
-    """
-    def __init__(self, message, prior_exception):
-        self.message = message
-        self.prior_exception = prior_exception
-
-    def print(self):
-        print(self.prior_exception)
-        print(self.message)
 
 class ValidatingConfigLoader(ConfigLoaderBase):
 
@@ -34,8 +21,7 @@ class ValidatingConfigLoader(ConfigLoaderBase):
             msg = "\nYour config.json is invalid, for further information, see the error message above."
             raise ConfigValidationError(msg, validation_error)
         except JSONDecodeError as json_error:
-            print(json_error)
-            mgs = "\nYour config.json is invalid, for further information, see the error message above."
+            msg = "\nYour config.json is invalid, for further information, see the error message above."
             raise ConfigValidationError(msg, json_error)
         except IOError as io_error:
             msg = "Your config.json is either not readable, or the specified path is incorrect."
