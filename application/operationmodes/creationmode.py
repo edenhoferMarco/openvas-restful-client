@@ -1,5 +1,7 @@
 from application.operationmodes import OperationModeBase, WorkerBase
 from application.taskparser import TaskParserBase
+from application.communication import OpenvasCommunicationWrapper
+from requests.exceptions import ConnectionError
 
 class CreationMode(OperationModeBase):
     def start_execution(self):
@@ -19,9 +21,40 @@ class CreationWorker(WorkerBase):
         self.task_data = task_data
         self.task_parser = task_parser
         self.host = host
+        self.communication = OpenvasCommunicationWrapper(self.host)
 
     def execute(self):
-        for task in self.task_data:
-            print(f"Creating Task: {task['name']} on host {self.host}")
+        try:
+            if not self.communication.is_alive():
+                return f"Openvas server on host {self.host} unreachable! Thread aborting!"
+        
+            for task in self.task_data:
+                print(f"Creating Task: {task['name']} on host {self.host}")
 
-        return f"Host {self.host} finished!"
+                scanner_name = "OpenVAS Default"
+
+                scannerid = self.communication.get_scanner_id_by_name(scanner_name)
+                if scannerid:
+                    print(f"Scanner with name {scanner_name} on host {self.host} has ID {scannerid}")
+                else:
+                    print(f"No scanner with name {scanner_name} on host {self.host} found")
+
+                config_name = "Discovery"
+
+                config_id = self.communication.get_config_id_by_name(config_name)
+                if scannerid:
+                    print(f"Config with name {config_name} on host {self.host} has ID {config_id}")
+                else:
+                    print(f"No config with name {config_name} on host {self.host} found")
+
+
+
+            return f"Host {self.host} finished!"
+        except ConnectionError:
+            return f"Host {self.host} unreachable! Thread aborting!"
+        
+
+        
+
+
+    

@@ -16,4 +16,4 @@ class ValidationWorker(WorkerBase):
         self.host = host
 
     def execute(self):
-        return f"Validation needs no execution on host {self.host}"
+        return f"Validation has nothing to execution on host {self.host}"

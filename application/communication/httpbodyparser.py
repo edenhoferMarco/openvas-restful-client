@@ -1,0 +1,2 @@
+class HttpBodyParser:
+    pass
