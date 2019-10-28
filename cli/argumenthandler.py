@@ -1,5 +1,5 @@
 import argparse
-from application.operationmodes import OperationModeBase, ExecutionMode, CreationMode
+from application.operationmodes import OperationModeBase, ExecutionMode, CreationMode, ValidationMode
 
 class ArgumentHandler():
     __arg_config = "config"
@@ -23,7 +23,7 @@ class ArgumentHandler():
         elif args.create:
             return CreationMode()
         else:
-            return OperationModeBase()
+            return ValidationMode()
 
     def get_config_path(self):
         return self.args.config
