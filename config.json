@@ -4,34 +4,34 @@
     ],
     "tasks" : [
         {
-            "name" : "taskname",
+            "name" : "Client-Test-Task",
             "create_params" : {
-                "config" : "configname",
+                "config" : "Full and fast",
                 "target" : {
-                    "name" : "targetname",
+                    "name" : "Test-Targets",
                     "hosts" : [
                         "172.16.118.130",
                         "172.16.118.135"
                     ],
-                    "exclude_hosts" : ["172.16.118.130"],
+                    "exclude_hosts" : [],
                     "credential" : {
-                        "name" : "credential-name",
-                        "login" : "username",
-                        "password" : "password"
+                        "name" : "victim-credential",
+                        "login" : "victim",
+                        "password" : "victim"
                     },
                     "port" : "22",
-                    "port_list" : "portlist-name"
+                    "port_list" : "All IANA assigned TCP and UDP 2012-02-10"
                 },
-                "scanner" : "scanner-name",
+                "scanner" : "OpenVAS Default",
                 "alerts" : [
                     {
-                        "name" : "alertname",
+                        "name" : "scp_full_and_fast",
                         "credential" : {
-                            "name" : "credential-name",
-                            "login" : "username",
-                            "password" : "password"
+                            "name" : "openvas-ssh-credential",
+                            "login" : "openvas",
+                            "password" : "openvas"
                         },
-                        "path" : "/path/to/destination/file.csv",
+                        "path" : "/home/openvas/reports/full_and_fast/report.csv",
                         "host" : "0.0.0.0",
                         "report_format" : "CSV Results",
                         "status" : "Done"

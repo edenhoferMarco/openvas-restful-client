@@ -21,19 +21,62 @@ class OpenvasCommunicationWrapper():
 
         return False
 
+    def get_task_id_by_name(self, name):
+        url = self.__make_url_with_param(path="_tasks", param=name)
+        response = requests.get(url=url)
+
+        return self.__get_id_by_name(name, response)
+
     def get_scanner_id_by_name(self, name):
         url = self.__make_url_with_param(path="_scanners", param=name)
         response = requests.get(url=url)
 
         return self.__get_id_by_name(name, response)
 
-        
-
     def get_config_id_by_name(self, name):
         url = self.__make_url_with_param(path="_configs", param=name)
         response = requests.get(url=url)
 
         return self.__get_id_by_name(name, response)
+
+    def get_target_id_by_name(self, name) -> str:
+        url = self.__make_url_with_param(path="_targets", param=name)
+        response = requests.get(url=url)
+
+        return self.__get_id_by_name(name, response)
+
+    def get_alert_id_by_name(self, name) -> str:
+        url = self.__make_url_with_param(path="_alerts", param=name)
+        response = requests.get(url=url)
+
+        return self.__get_id_by_name(name, response)
+
+    def get_credential_id_by_name(self, name) -> str:
+        url = self.__make_url_with_param(path="_credentials", param=name)
+        response = requests.get(url=url)
+
+        return self.__get_id_by_name(name, response)
+
+    def get_report_format_id_by_name(self, name) -> str:
+        url = self.__make_url_with_param(path="_reportformats", param=name)
+        response = requests.get(url=url)
+
+        return self.__get_id_by_name(name, response)
+
+    def get_port_list_id_by_name(self, name) -> str:
+        url = self.__make_url_with_param(path="_portlists", param=name)
+        response = requests.get(url=url)
+
+        return self.__get_id_by_name(name, response)
+
+    def create_target(self, name, hosts, exclude_hosts, credential, port, port_list) -> str:
+        pass
+
+    def create_alert(self, name, credential, path, host, report_format, status) -> str:
+        pass
+
+    def create_credential(self, name, login, password) -> str:
+        pass
 
 
     def __get_id_by_name(self, name, response):
