@@ -29,10 +29,8 @@ class CreationWorker(WorkerBase):
                 return f"Openvas server on host {self.host} unreachable! Thread aborting!"
         
             for task in self.task_data:
-                
                 self.__create_task(task)
 
-    
             return f"Host {self.host} finished!"
         except ConnectionError:
             return f"Host {self.host} unreachable! Thread aborting!"

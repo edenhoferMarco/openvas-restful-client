@@ -117,7 +117,3 @@ class DefaultTaskParser(TaskParserBase):
 
     def get_credential_password(self, credential) -> str:
         return credential["password"]
-
-    
-
-    

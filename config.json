@@ -4,20 +4,19 @@
     ],
     "tasks" : [
         {
-            "name" : "test_Client-Test-Task",
+            "name" : "test_Exec-Test-Task",
             "create_params" : {
-                "config" : "Full and fast",
+                "config" : "System Discovery",
                 "target" : {
-                    "name" : "test_Test-Targets",
+                    "name" : "test_Self",
                     "hosts" : [
-                        "172.16.118.130",
-                        "172.16.118.135"
+                        "172.16.118.128"
                     ],
                     "exclude_hosts" : [],
                     "credential" : {
-                        "name" : "test_victim-credential",
-                        "login" : "victim",
-                        "password" : "victim"
+                        "name" : "test_openvas-cred",
+                        "login" : "openvas",
+                        "password" : "openvas"
                     },
                     "port" : "22",
                     "port_list" : "All IANA assigned TCP and UDP 2012-02-10"
@@ -25,13 +24,13 @@
                 "scanner" : "OpenVAS Default",
                 "alerts" : [
                     {
-                        "name" : "scp_full_and_fast",
+                        "name" : "scp_system_discovery",
                         "credential" : {
-                            "name" : "test_openvas-ssh-credential",
+                            "name" : "test_openvas-cred",
                             "login" : "openvas",
                             "password" : "openvas"
                         },
-                        "path" : "/home/openvas/reports/full_and_fast/report.csv",
+                        "path" : "/home/openvas/reports/system_discovery/report.csv",
                         "host" : "0.0.0.0",
                         "report_format" : "CSV Results",
                         "status" : "Done"

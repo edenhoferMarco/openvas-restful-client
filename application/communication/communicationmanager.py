@@ -122,6 +122,19 @@ class OpenvasCommunicationWrapper():
 
         return self.__get_id_from_created_object(response)
 
+    def start_task(self, task_id):
+        url = self.__make_url(path="_start/task")
+        body = {
+            RequestKeywordType.TASK_ID.value : task_id
+        }
+        response = requests.post(url=url, json=body)
+        if response:
+            response_json = response.json()
+            if self.__openvas_response_ok(response_json):
+                return True
+
+        return False
+
     def __get_id_by_name(self, name, response):
         if response:
             response_json = response.json()
