@@ -64,7 +64,7 @@ class DefaultTaskParser(TaskParserBase):
         target = self.get_target(data)
         return target["port"]
 
-    def get_target_port_list(self, data) -> list:
+    def get_target_port_list(self, data) -> str:
         target = self.get_target(data)
         return target["port_list"]
 

@@ -51,6 +51,7 @@ class CreationWorker(WorkerBase):
             target_id = self.__get_or_create_target(data)
             if not target_id:
                 return
+            
 
             scanner_id = self.__get_scanner(data)
             if not scanner_id:
@@ -61,7 +62,11 @@ class CreationWorker(WorkerBase):
                 if not id:
                     return
 
-            print(f"Task {task_name} created on host {self.host}")
+            task_id = self.communication.create_task(task_name, config_id, target_id, scanner_id, alert_ids)
+            if not task_id:
+                return
+
+            print(f"Created task {task_name} on host {self.host} with ID {task_id}")
 
 
     def __get_config(self, data) -> str:
@@ -102,11 +107,12 @@ class CreationWorker(WorkerBase):
             return None
 
         port = self.task_parser.get_target_port(data)
-        port_list = self.task_parser.get_target_port_list(data)
+        port_list = self.__get_port_list(data)
         if not port_list:
             return None
         
         target_id = self.communication.create_target(name, hosts, exclude_hosts, credential, port, port_list)
+        print(f"Created target {name} on host {self.host} with ID {target_id}")
         return target_id
         
     def __get_scanner(self, data) -> str:
@@ -166,6 +172,7 @@ class CreationWorker(WorkerBase):
         status = self.task_parser.get_alert_status(alert)
 
         alert_id = self.communication.create_alert(name, credential, path, host, report_format, status)
+        print(f"Created alert {name} on host {self.host} with ID {alert_id}")
         return alert_id
 
     def __get_report_format(self, alert) -> str:
@@ -200,4 +207,5 @@ class CreationWorker(WorkerBase):
         password = self.task_parser.get_credential_password(credential)
 
         credential_id = self.communication.create_credential(name, login, password)
+        print(f"Created credential {name} on host {self.host} with ID {credential_id}")
         return credential_id
